@@ -1,0 +1,9 @@
+{
+  "total_clients": 16,
+  "clients_with_metadata_notes": 6,
+  "clients_already_migrated": 0,
+  "clients_to_migrate": 6,
+  "successfully_migrated": 6,
+  "errors": 0,
+  "error_details": []
+}

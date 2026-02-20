@@ -1,0 +1,11 @@
+# Sync Reports
+
+This directory contains JSON reports from the sync_mock_to_supabase.py script.
+
+Each report includes:
+- Timestamp of sync
+- Counts: clients, conversations, documents inserted/updated/skipped
+- Mappings: mock UUID -> Supabase UUID
+- Errors encountered during sync
+
+Reports are named: `sync_report_YYYYMMDD_HHMMSS.json`

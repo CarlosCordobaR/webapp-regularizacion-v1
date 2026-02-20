@@ -1,0 +1,119 @@
+generator client {
+  provider  = "prisma-client-py"
+  interface = "asyncio"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+/// Client represents individuals going through regularization process
+/// Each client has a unique phone number and passport/NIE identifier
+model Client {
+  id            String         @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  phoneNumber   String         @unique @map("phone_number") @db.VarChar(20)
+  name          String?        @db.VarChar(255)
+  email         String?        @db.VarChar(255)
+  notes         String?        @db.Text
+  profileType   profile_type?  @default(OTHER) @map("profile_type")
+  status        client_status? @default(active)
+  metadata      Json?          @default("{}")
+  createdAt     DateTime?      @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt     DateTime?      @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+  passportOrNie String         @default("PENDING") @map("passport_or_nie")
+  conversations Conversation[]
+  documents     Document[]
+
+  @@index([createdAt(sort: Desc)], map: "idx_clients_created_at")
+  @@index([phoneNumber], map: "idx_clients_phone")
+  @@index([profileType], map: "idx_clients_profile_type")
+  @@index([status], map: "idx_clients_status")
+  @@map("clients")
+}
+
+/// Document represents uploaded files (PDFs) associated with clients
+/// Supports two types: TASA (fee payment) and PASSPORT_NIE (identification)
+model Document {
+  id               String         @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  clientId         String         @map("client_id") @db.Uuid
+  conversationId   String?        @map("conversation_id") @db.Uuid
+  storagePath      String         @unique @map("storage_path")
+  originalFilename String?        @map("original_filename") @db.VarChar(255)
+  mimeType         String?        @map("mime_type") @db.VarChar(100)
+  fileSize         BigInt?        @map("file_size")
+  profileType      profile_type?  @map("profile_type")
+  metadata         Json?          @default("{}")
+  uploadedAt       DateTime?      @default(now()) @map("uploaded_at") @db.Timestamptz(6)
+  documentType     document_type? @map("document_type")
+  client           Client         @relation(fields: [clientId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  conversation     Conversation?  @relation(fields: [conversationId], references: [id], onUpdate: NoAction)
+
+  @@unique([clientId, documentType], name: "unique_client_document_type", map: "unique_client_document_type")
+  @@index([clientId], map: "idx_documents_client_id")
+  @@index([clientId, uploadedAt(sort: Desc)], map: "idx_documents_client_uploaded")
+  @@index([conversationId], map: "idx_documents_conversation_id")
+  @@index([profileType], map: "idx_documents_profile_type")
+  @@map("documents")
+}
+
+/// Conversation represents WhatsApp message exchanges
+/// Tracks inbound/outbound messages with deduplication
+model Conversation {
+  id          String            @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  clientId    String            @map("client_id") @db.Uuid
+  messageId   String            @unique @map("message_id") @db.VarChar(255)
+  direction   message_direction
+  content     String?
+  messageType String            @map("message_type") @db.VarChar(50)
+  dedupeKey   String?           @unique @map("dedupe_key") @db.VarChar(64)
+  metadata    Json?             @default("{}")
+  createdAt   DateTime?         @default(now()) @map("created_at") @db.Timestamptz(6)
+  client      Client            @relation(fields: [clientId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  documents   Document[]
+
+  @@index([clientId, createdAt(sort: Desc)], map: "idx_conversations_client_created")
+  @@index([clientId], map: "idx_conversations_client_id")
+  @@index([dedupeKey], map: "idx_conversations_dedupe_key")
+  @@index([direction], map: "idx_conversations_direction")
+  @@index([messageId], map: "idx_conversations_message_id")
+  @@map("conversations")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model sync_mappings {
+  mock_id     String    @db.Uuid
+  supabase_id String    @db.Uuid
+  entity_type String    @db.VarChar(50)
+  synced_at   DateTime? @default(now()) @db.Timestamptz(6)
+
+  @@id([mock_id, entity_type])
+  @@index([entity_type], map: "idx_sync_mappings_entity_type")
+}
+
+enum client_status {
+  active
+  inactive
+  archived
+}
+
+enum document_type {
+  TASA
+  PASSPORT_NIE
+}
+
+enum message_direction {
+  INBOUND
+  OUTBOUND
+  inbound
+  outbound
+}
+
+enum profile_type {
+  ASYLUM
+  ARRAIGO
+  STUDENT
+  IRREGULAR
+  OTHER
+}
