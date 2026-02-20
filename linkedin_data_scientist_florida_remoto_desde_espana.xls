@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <Worksheet ss:Name="Ofertas">
+  <Table>
+   <Row>
+    <Cell><Data ss:Type="String">nombre de la posicion</Data></Cell>
+    <Cell><Data ss:Type="String">pais</Data></Cell>
+    <Cell><Data ss:Type="String">salario</Data></Cell>
+    <Cell><Data ss:Type="String">link a la posicion</Data></Cell>
+    <Cell><Data ss:Type="String">resumen de la descripcion de la posicion</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Data Scientist (Freelancer)</Data></Cell>
+    <Cell><Data ss:Type="String">United States</Data></Cell>
+    <Cell><Data ss:Type="String">$40.00 - $80.00</Data></Cell>
+    <Cell><Data ss:Type="String">https://www.linkedin.com/jobs/view/data-scientist-freelancer-at-fifa-4366935601</Data></Cell>
+    <Cell><Data ss:Type="String">Rol remoto para modelado economico de jugadores y proyectos de data science (NLP, ML, web scraping, prediccion).</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Applied Data Scientist</Data></Cell>
+    <Cell><Data ss:Type="String">United States</Data></Cell>
+    <Cell><Data ss:Type="String">$40.00 - $80.00</Data></Cell>
+    <Cell><Data ss:Type="String">https://www.linkedin.com/jobs/view/applied-data-scientist-at-ebg-4357364624</Data></Cell>
+    <Cell><Data ss:Type="String">Analitica aplicada y ciencia de datos para ecommerce de travel/entertainment y optimizacion de negocio digital.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Data Scientist</Data></Cell>
+    <Cell><Data ss:Type="String">United States</Data></Cell>
+    <Cell><Data ss:Type="String">$30.00 - $40.00</Data></Cell>
+    <Cell><Data ss:Type="String">https://www.linkedin.com/jobs/view/data-scientist-at-dataannotation-4309801128</Data></Cell>
+    <Cell><Data ss:Type="String">Entrenamiento y evaluacion de modelos de IA, medicion de calidad y resolucion de problemas de razonamiento.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Applied Data Scientist</Data></Cell>
+    <Cell><Data ss:Type="String">United States</Data></Cell>
+    <Cell><Data ss:Type="String">$140,000.00 - $200,000.00</Data></Cell>
+    <Cell><Data ss:Type="String">https://www.linkedin.com/jobs/view/applied-data-scientist-at-ebg-4357444554</Data></Cell>
+    <Cell><Data ss:Type="String">Desarrollo de soluciones de ML y analitica avanzada con impacto directo en producto y crecimiento.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Applied Data Scientist</Data></Cell>
+    <Cell><Data ss:Type="String">United States</Data></Cell>
+    <Cell><Data ss:Type="String">$30.00/hr - $40.00/hr</Data></Cell>
+    <Cell><Data ss:Type="String">https://www.linkedin.com/jobs/view/applied-data-scientist-at-dataannotation-4309689998</Data></Cell>
+    <Cell><Data ss:Type="String">Entrenamiento de IA con foco en evaluacion de salidas, mejora de logica y trabajo remoto flexible.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Sr. Computer Vision Data Scientist</Data></Cell>
+    <Cell><Data ss:Type="String">United States</Data></Cell>
+    <Cell><Data ss:Type="String">$165,000-$190,000</Data></Cell>
+    <Cell><Data ss:Type="String">https://www.linkedin.com/jobs/view/sr-computer-vision-data-scientist-at-mitchell-martin-inc-4355687579</Data></Cell>
+    <Cell><Data ss:Type="String">Rol senior remoto para disenar y desplegar modelos de vision por computador y ML.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Data Scientist</Data></Cell>
+    <Cell><Data ss:Type="String">United States</Data></Cell>
+    <Cell><Data ss:Type="String">$45 - $50</Data></Cell>
+    <Cell><Data ss:Type="String">https://www.linkedin.com/jobs/view/data-scientist-at-apex-systems-4372155692</Data></Cell>
+    <Cell><Data ss:Type="String">Contrato remoto/hibrido para modelado y analitica avanzada en entorno enterprise.</Data></Cell>
+   </Row>
+  </Table>
+ </Worksheet>
+</Workbook>
